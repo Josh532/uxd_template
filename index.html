@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg?v=1">
+    <title>Artificial Intelligence | Report UXD 2026         
+    </title>
+</head>
+<style>
+    :root {
+        scroll-behavior: smooth;
+        --ink: #26382f;
+        --paper: #f3f5ed;
+        --paper-alt: #e5ecdf;
+        --accent: #71885f;
+        --accent-light: #b9cba8;
+        --white: #faf9f5;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        color: var(--ink);
+        background: var(--paper);
+    }
+
+    header {
+        position: relative;
+        color: var(--white);
+        padding: 10px 20px;
+        height: 100vh;
+        background-image: linear-gradient(90deg, #172522c9, #17252230), url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=2400&q=85');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-color: var(--ink);
+    }
+
+    .github-profile {
+        position: absolute;
+        top: 52%;
+        left: 50%;
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        width: min(680px, calc(100% - 40px));
+        padding: 32px;
+        border: 1px solid #ffffff55;
+        border-radius: 18px;
+        color: var(--white);
+        background: #1b2926e8;
+        box-shadow: 0 18px 48px #1118;
+        text-decoration: none;
+        transform: translate(-50%, -50%);
+        transition: border-color .2s, background .2s;
+    }
+
+    .github-profile:hover { border-color: var(--accent-light); background: #1b2926f5; }
+    .github-avatar {
+        flex: 0 0 112px;
+        width: 112px;
+        height: 112px;
+        border: 2px solid var(--accent-light);
+        border-radius: 50%;
+        background: var(--accent);
+        object-fit: cover;
+    }
+    .github-info { min-width: 0; }
+    .github-name { margin: 0 0 4px; font-size: 27px; }
+    .github-handle { color: var(--accent-light); font-size: 17px; }
+    .github-bio { margin: 14px 0; font-size: 17px; line-height: 1.5; }
+    .github-stats { display: flex; flex-wrap: wrap; gap: 18px; font-size: 15px; }
+    .github-stats strong { color: var(--accent-light); }
+
+    @media screen and (max-width: 500px) {
+        .github-profile { gap: 16px; padding: 20px; }
+        .github-avatar { flex-basis: 76px; width: 76px; height: 76px; }
+        .github-name { font-size: 21px; }
+        .github-bio { font-size: 15px; }
+    }
+
+    nav {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1450px;
+        margin: 0 auto;
+        padding: 12px 20px;
+        border: 1px solid #ffffff35;
+        border-radius: 16px;
+        background: #1b2926df;
+    }
+
+    nav h1 {
+        margin: 0;
+        font-size: 20px;
+        letter-spacing: .06em;
+        white-space: nowrap;
+    }
+
+    nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    nav ul li { position: relative; }
+
+    nav summary {
+        padding: 10px 14px;
+        border-radius: 10px;
+        color: var(--white);
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        list-style: none;
+    }
+
+    nav summary::-webkit-details-marker { display: none; }
+    nav summary::after { content: "⌄"; margin-left: 8px; color: var(--accent-light); }
+    nav details[open] summary,
+    nav summary:hover,
+    nav summary:focus-visible { background: #ffffff18; outline: none; }
+
+    .nav-direct > a {
+        display: block;
+        padding: 10px 14px;
+        border-radius: 10px;
+        color: var(--white);
+        font-size: 16px;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    .nav-direct > a:hover,
+    .nav-direct > a:focus-visible { background: #ffffff18; outline: none; }
+
+    nav .dropdown {
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 0;
+        z-index: 3;
+        display: grid;
+        min-width: 220px;
+        gap: 4px;
+        padding: 8px;
+        border: 1px solid #ffffff30;
+        border-radius: 14px;
+        background: #26332f;
+        box-shadow: 0 12px 28px #1118;
+    }
+
+    nav details:not([open]) > .dropdown { display: none; }
+
+    nav .dropdown a {
+        display: block;
+        padding: 10px 12px;
+        border-radius: 8px;
+        color: var(--white);
+        font-weight: bold;
+        font-size: 15px;
+        text-decoration: none;
+    }
+
+    nav .dropdown a:hover,
+    nav .dropdown a:focus-visible {
+        color: var(--accent-light);
+        background: #ffffff14;
+        outline: none;
+    }
+
+    @media screen and (min-width: 1771px) {
+        nav details:hover .dropdown,
+        nav details:focus-within .dropdown { display: grid; }
+    }
+
+    #menu-toggle span {
+        display: block;
+        width: 25px;
+        height: 2px;
+        margin: 6px 0;
+        border-radius: 2px;
+        background: currentColor;
+        transition: transform .2s, opacity .2s;
+    }
+
+    #menu-toggle[aria-expanded="true"] span:first-child { transform: translateY(8px) rotate(45deg); }
+    #menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    #menu-toggle[aria-expanded="true"] span:last-child { transform: translateY(-8px) rotate(-45deg); }
+
+    .page {
+        min-height: 70vh;
+        padding: 80px clamp(24px, 10vw, 160px);
+        scroll-margin-top: 20px;
+        transition: opacity .65s ease, transform .65s ease;
+    }
+
+    body.reveal-ready .page { opacity: 0; transform: translateY(24px); }
+    body.reveal-ready .page.is-visible { opacity: 1; transform: translateY(0); }
+
+    .page:nth-child(even) { background: var(--paper-alt); }
+    .page h2 {
+        color: #49684c;
+        font-family: Georgia, serif;
+        font-size: clamp(30px, 5vw, 52px);
+        font-weight: 500;
+    }
+    .page p { max-width: 750px; font-size: 18px; line-height: 1.7; }
+    .facts {
+        max-width: 750px;
+        margin: 24px 0;
+        padding: 16px 20px 16px 38px;
+        border-left: 3px solid var(--accent);
+        border-radius: 0 10px 10px 0;
+        background: #ffffff80;
+        line-height: 1.7;
+    }
+    .facts li + li { margin-top: 6px; }
+    .facts strong { color: #49684c; }
+    .model-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+        gap: 18px;
+        max-width: 1050px;
+        margin-top: 28px;
+    }
+    .model-card {
+        overflow: hidden;
+        padding: 22px;
+        border: 1px solid #71885f55;
+        border-radius: 14px;
+        background: #ffffff80;
+        transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .model-card:hover { transform: translateY(-5px); box-shadow: 0 14px 28px #26382f1a; }
+    .model-card h3 { margin-top: 0; color: #49684c; }
+    .model-card p { margin-bottom: 0; font-size: 16px; }
+    .repo-link {
+        display: inline-block;
+        margin-top: 16px;
+        padding: 9px 13px;
+        border-radius: 8px;
+        color: var(--white);
+        background: var(--ink);
+        font-weight: bold;
+        text-decoration: none;
+    }
+    .repo-link:hover, .repo-link:focus-visible { background: #49684c; outline: 2px solid var(--accent-light); }
+    .model-image {
+        display: grid;
+        min-height: 180px;
+        margin: -22px -22px 20px;
+        place-items: center;
+        color: #49684c;
+        background: var(--paper-alt);
+        border-bottom: 1px dashed var(--accent);
+        font-size: 15px;
+    }
+    .model-image img { width: 100%; height: 100%; min-height: 180px; object-fit: cover; }
+    .conclusion { background: var(--paper-alt); }
+
+    @media (prefers-reduced-motion: reduce) {
+        :root { scroll-behavior: auto; }
+        *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+
+    #menu-toggle {
+        display: none;
+        color: var(--white);
+        background: transparent;
+        border: 0;
+        font-size: 30px;
+        cursor: pointer;
+    }
+
+    @media screen and (max-width: 1770px) {
+        nav { padding: 12px 14px; }
+        nav h1 { font-size: 17px; }
+        #menu-toggle {
+            display: block;
+            z-index: 1;
+            padding: 8px;
+            border: 1px solid #ffffff55;
+            border-radius: 12px;
+            background: #ffffff12;
+        }
+        nav ul {
+            position: absolute;
+            top: calc(100% + 12px);
+            right: 0;
+            flex-direction: column;
+            gap: 6px;
+            width: min(360px, calc(100vw - 40px));
+            padding: 12px;
+            border: 1px solid #ffffff28;
+            border-radius: 18px;
+            background: #26332f;
+            box-shadow: 0 14px 32px #1119;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px) scale(.98);
+            transform-origin: top right;
+            transition: opacity .2s ease, transform .2s ease, visibility .2s;
+        }
+        nav ul.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+        nav summary {
+            display: block;
+            padding: 12px 14px;
+            font-size: 16px;
+        }
+        .nav-direct > a { padding: 12px 14px; font-size: 16px; }
+        nav .dropdown {
+            position: static;
+            min-width: 0;
+            gap: 2px;
+            margin: 0 8px 8px;
+            padding: 4px 0 4px 8px;
+            border: 0;
+            border-left: 1px solid var(--accent);
+            border-radius: 0;
+            background: transparent;
+            box-shadow: none;
+        }
+        nav .dropdown a { padding: 9px 12px; font-size: 15px; }
+    }
+</style>
+<body>
+    <header>
+        <nav>
+            <h1>Artificial Intelligence | Report UXD 2026    </h1>
+            <button id="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-menu"><span></span><span></span><span></span></button>
+            <ul id="nav-menu">
+                <li>
+                    <details>
+                        <summary>AI</summary>
+                        <div class="dropdown">
+                            <a href="#overview">AI overview</a>
+                            <a href="#my-models">My AI models</a>
+                            <a href="#page1">Traditional AI</a>
+                            <a href="#page2">Generative AI</a>
+                            <a href="#page3">Machine Learning</a>
+                            <a href="#page4">Agentic AI</a>
+                            <a href="#page7">Robotics</a>
+                        </div>
+                    </details>
+                </li>
+                <li>
+                    <details>
+                        <summary>Environment</summary>
+                        <div class="dropdown">
+                            <a href="#page5">Environmental impact</a>
+                            <a href="#page6">Data centers</a>
+                        </div>
+                    </details>
+                </li>
+                <li>
+                    <details>
+                        <summary>Ethics</summary>
+                        <div class="dropdown">
+                            <a href="#page8">Ethics in AI</a>
+                        </div>
+                    </details>
+                </li>
+                <li class="nav-direct"><a href="#conclusion">Conclusion</a></li>
+                <li class="nav-direct"><a href="#bibliography">Bibliography</a></li>
+            </ul>
+        </nav>
+        <a class="github-profile" id="github-profile" href="https://github.com/josh532" target="_blank" rel="noopener noreferrer" aria-label="View josh532 on GitHub">
+            <img class="github-avatar" id="github-avatar" src="https://github.com/josh532.png?size=160" alt="josh532 GitHub avatar">
+            <div class="github-info">
+                <h2 class="github-name" id="github-name">GitHub Profile</h2>
+                <span class="github-handle">@josh532</span>
+                <p class="github-bio" id="github-bio">Loading profile…</p>
+                <div class="github-stats">
+                    <span><strong id="github-repo-count">—</strong> repositories</span>
+                    <span><strong id="github-followers">—</strong> followers</span>
+                </div>
+            </div>
+        </a>
+    </header>
+    <main>
+        <section class="page" id="overview">
+            <h2>AI Overview</h2>
+            <ul class="facts">
+                <li><strong>Quick history:</strong> “Artificial intelligence” became the name of a research field at a 1956 workshop at Dartmouth.</li>
+                <li><strong>What it does:</strong> Helps computers learn from examples, understand language, spot patterns, and make predictions.</li>
+                <li><strong>Where you’ll see it:</strong> Healthcare, banking, schools, factories, transport, and apps we use every day.</li>
+                <li><strong>Worth knowing:</strong> AI is a big umbrella term. These systems don’t automatically think or understand things like people do.</li>
+            </ul>
+            <p>Artificial intelligence, or AI, is about making computer systems that can do jobs we usually connect with human thinking. Some AI follows rules, while other kinds learn patterns from examples. What it can do depends on how it was built and the information it learned from, so people still need to use their judgment.</p>
+        </section>
+        <section class="page" id="my-models">
+            <h2>AI Models I’ve Made</h2>
+            <p>I have made several AI models, using ultralytics, YoloV11.pt, Numpy, python 3.12.14, open cv, and open source YAML libraries, in order to create several tracking AI's. </p>
+            <div class="model-grid">    
+                <article class="model-card">
+                    <div class="model-image">Add model image</div>
+                    <h3>Train 9.2</h3>
+                    <p><strong>Purpose:</strong> Tracks and analyses movement of Aircraft, involving their shape, size and unique features, in order to understand the exact model and type.<br><strong>Built with:</strong>ultralytics, YoloV11.pt, Numpy, python 3.12.14, open cv<br></p>
+                    <a class="repo-link" href="https://github.com/your-username/your-repository" target="_blank" rel="noopener noreferrer">View GitHub repo ↗</a>
+                </article>
+                <article class="model-card">
+                    <div class="model-image">Add model image</div>
+                    <h3>Car Tracker</h3>
+                    <p><strong>Purpose:</strong> Tracks and analyses movement of Cars, involving their shape, size and unique features, this tracker does not identify specific car models, however is able to count and identify vehicles.<br><strong>Built with:</strong>ultralytics, YoloV11.pt, Numpy, python 3.12.14, open cv and yaml<br></p>
+                    <a class="repo-link" href="https://github.com/your-username/your-repository" target="_blank" rel="noopener noreferrer">View GitHub repo ↗</a>
+                </article>
+                <article class="model-card">
+                    <div class="model-image">Add model image</div>
+                    <h3>Facial Tracking AI</h3>
+                    <p><strong>Purpose:</strong> Tracks and analyses movement of Faces, involving their shape, size and unique features, in order to identify faces correctly, in differen't lights.<br><strong>Built with:</strong>ultralytics, YoloV11.pt, Numpy, python 3.12.14, open cv, and yaml<br></p>
+                    <a class="repo-link" href="https://github.com/your-username/your-repository" target="_blank" rel="noopener noreferrer">View GitHub repo ↗</a>
+                </article>
+            </div>
+        </section>
+        <section class="page" id="page1">
+            <h2>Traditional AI</h2>
+            <ul class="facts">
+                <li><strong>Quick history:</strong> Expert systems that used rules became popular in the 1970s and 1980s. Traditional AI doesn’t have one exact start date.</li>
+                <li><strong>What it’s for:</strong> Handling a specific job using rules, search, or a model built for that task.</li>
+                <li><strong>Examples:</strong> Checking for fraud, spotting equipment problems, planning schedules, and checking products.</li>
+                <li><strong>Worth knowing:</strong> It can do its assigned job well, but may struggle when something changes.</li>
+            </ul>
+            <p>Traditional AI is built to do a particular job, like sorting information or making a prediction. It can be useful when the task is clear and repeated a lot, but it usually won’t handle a totally new situation on its own.</p>
+        </section>
+        <section class="page" id="page2">
+            <h2>Generative AI</h2>
+            <ul class="facts">
+                <li><strong>Quick history:</strong> The research goes back years, but lots more people started trying it after ChatGPT launched in 2022.</li>
+                <li><strong>What it’s for:</strong> Making things like text, pictures, audio, video, and computer code from a prompt.</li>
+                <li><strong>Example tools:</strong> ChatGPT, Adobe Firefly, Microsoft Copilot, and Google Gemini.</li>
+                <li><strong>Worth knowing:</strong> It can sound sure of itself and still get facts wrong, so check anything important.</li>
+            </ul>
+            <p>Generative AI makes new content by learning patterns from examples. People use it to brainstorm, summarize information, or get started on creative projects. It can save time, but its answers aren’t automatically correct.</p>
+        </section>
+        <section class="page" id="page3">
+            <h2>Machine Learning</h2>
+            <ul class="facts">
+                <li><strong>Quick history:</strong> In 1959, Arthur Samuel used “machine learning” to describe a program that learned to play checkers.</li>
+                <li><strong>What it’s for:</strong> Finding patterns in examples to sort things, make predictions, or suggest options.</li>
+                <li><strong>Examples:</strong> Shopping recommendations, spam filters, sales forecasts, and fraud alerts.</li>
+                <li><strong>Worth knowing:</strong> It learns from data, so biased or incomplete examples can lead to bad results.</li>
+            </ul>
+            <p>Machine learning is a type of AI that learns patterns from data instead of being given every rule by hand. For example, it can learn to spot spam by looking at lots of messages. The examples it learns from have a big effect on how well it works.</p>
+        </section>
+        <section class="page" id="page4">
+            <h2>Agentic AI</h2>
+            <ul class="facts">
+                <li><strong>Quick history:</strong> AI agents aren’t new, but interest in agents using language models and digital tools took off in 2023.</li>
+                <li><strong>What it’s for:</strong> Breaking a goal into steps, using tools, and changing its approach when needed.</li>
+                <li><strong>Examples:</strong> Helping with research, coding, customer questions, or repetitive online tasks.</li>
+                <li><strong>Worth knowing:</strong> Give agents clear limits, and have a person approve important actions.</li>
+            </ul>
+            <p>Agentic AI can take a goal, figure out some steps, and use digital tools to work through them. That can be handy for multi-step tasks, but it can also make mistakes, so it shouldn’t have unlimited access or make important choices without people checking.</p>
+        </section>
+        <section class="page" id="page5">
+            <h2>Environmental Factors</h2>
+            <p>AI takes energy and hardware to build and run, and both can affect the environment. Using efficient computers, cleaner electricity, and models that aren’t bigger than needed can help lower that impact.</p>
+        </section>
+        <section class="page" id="page6">
+            <h2>Data Centers</h2>
+            <p>Data centers are buildings full of computers that keep websites, apps, and AI services running. They need lots of power, cooling, and a reliable internet connection, so where and how they’re built matters.</p>
+        </section>
+        <section class="page" id="page7">
+            <h2>Robotics</h2>
+            <ul class="facts">
+                <li><strong>Quick history:</strong> Unimate became the first industrial robot used on a production line at a General Motors plant in 1961.</li>
+                <li><strong>What it’s for:</strong> Doing physical jobs that need accuracy or are repetitive, difficult, or unsafe for people.</li>
+                <li><strong>Examples:</strong> ABB, FANUC, and KUKA make industrial robots used in factories and other workplaces.</li>
+                <li><strong>Worth knowing:</strong> Robots use hardware, sensors, and control software. Not every robot uses AI.</li>
+            </ul>
+            <p>Robotics is about building machines that can sense and move around in the real world. Robots help with jobs in factories, hospitals, farms, and places that are hard or risky for people to reach. Some use AI, but many follow set instructions instead.</p>
+        </section>
+        <section class="page" id="page8">
+            <h2>Ethics in AI</h2>
+            <p>Ethics in AI is about making sure these tools are fair, safe, and respectful of people’s privacy. It also means being honest about how a system works and having people take responsibility when it causes problems. AI shouldn’t make major decisions about people without proper checks.</p>
+        </section>
+        <section class="page conclusion" id="conclusion">
+            <h2>Conclusion</h2>
+            <p>AI can be useful, but it isn’t magic and it doesn’t get everything right. The best way to use it is to understand what it can and can’t do, check important results, and think about how it affects people and the environment.</p>
+        </section>
+        <section class="page" id="bibliography">
+            <h2>Bibliography</h2>
+            <p>Replace these placeholders with the sources you used.</p>
+            <ul class="facts bibliography-list">
+                <li>[Author or organization]. <em>[Title of article or page]</em>. [Publisher], [publication date]. [URL]</li>
+                <li>[Author or organization]. <em>[Title of article or page]</em>. [Publisher], [publication date]. [URL]</li>
+                <li>[Author or organization]. <em>[Title of article or page]</em>. [Publisher], [publication date]. [URL]</li>
+            </ul>
+        </section>
+    </main>
+    <script>
+        fetch('https://api.github.com/users/josh532')
+            .then(response => {
+                if (!response.ok) throw new Error('GitHub profile could not be loaded');
+                return response.json();
+            })
+            .then(profile => {
+                document.querySelector('#github-avatar').src = profile.avatar_url;
+                document.querySelector('#github-avatar').alt = `${profile.login} GitHub avatar`;
+                document.querySelector('#github-name').textContent = profile.name || profile.login;
+                document.querySelector('#github-bio').textContent = profile.bio || 'Visit my GitHub profile to see my projects.';
+                document.querySelector('#github-repo-count').textContent = profile.public_repos;
+                document.querySelector('#github-followers').textContent = profile.followers;
+                document.querySelector('#github-profile').href = profile.html_url;
+            })
+            .catch(() => {
+                document.querySelector('#github-bio').textContent = 'See my projects and profile on GitHub.';
+            });
+
+        if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.body.classList.add('reveal-ready');
+            const sectionObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12 });
+
+            document.querySelectorAll('.page').forEach(section => sectionObserver.observe(section));
+        }
+
+        const menuToggle = document.querySelector('#menu-toggle');
+        const menu = document.querySelector('nav ul');
+
+        menuToggle.addEventListener('click', () => {
+            const isOpen = menu.classList.toggle('show');
+            menuToggle.setAttribute('aria-expanded', String(isOpen));
+            menuToggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+        });
+
+        menu.addEventListener('click', event => {
+            if (event.target.closest('a')) {
+                menu.classList.remove('show');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.setAttribute('aria-label', 'Open navigation menu');
+            }
+        });
+
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape') {
+                menu.classList.remove('show');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.setAttribute('aria-label', 'Open navigation menu');
+            }
+        });
+
+        document.addEventListener('click', event => {
+            if (!event.target.closest('nav')) {
+                menu.classList.remove('show');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.setAttribute('aria-label', 'Open navigation menu');
+            }
+        });
+    </script>
+</body>
+</html>
